@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<head>
+
+  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <script src="rotation.js"></script>
+
+  <!-- <script src="https://unpkg.com/aframe-animation-component@^4.1.1/dist/aframe-animation-timeline-component.min.js"></script> -->
+  <!-- <script src="https://unpkg.com/aframe-animation-timeline-component@1.6.0/dist/aframe-animation-timeline-component.min.js"></script> -->
+  <!-- <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script> -->
+
+</head>
+
+<body>
+
+  <!--Virtual Flight Simulator Scene-->
+  <a-scene id="scene" keyboard-shortcuts="enterVR: false">
+
+    <!--Assets-->
+    <a-assets>
+
+      <!-- GLTF Models-->
+      <a-asset-item id="plane" src="/Exploration/models/plane/scene.gltf"></a-asset-item>
+      <a-asset-item id="runway" src="/Exploration/models/runway/scene.gltf"></a-asset-item>
+      <a-asset-item id="terrainMap" src="/Exploration/models/map_gta5/scene.gltf"></a-asset-item>
+
+      <!--SKY Img-->
+      <img id="cloudysky" src="/Exploration/cloudsky.jpg">
+
+    </a-assets>
+
+    <!--Sky-->
+    <a-sky src="#cloudysky"></a-sky>
+
+    <!--Plane fixed to camera with WASD controls-->
+    <a-entity id="#look" camera look-controls  position="0 0.5 50" >
+      <a-entity gltf-model="#plane" position="0 0 -1" scale="0.02 0.02 0.02" rotation="-0 -110 -20">
+      </a-entity>
+    </a-entity>
+
+    <!--Terrain Map-->
+    <a-entity gltf-model="#terrainMap" position="0 1 -300" scale="0.3 0.3 0.3" rotation="0 -50 0" animation="property: position; to: 0 1 200; loop: true; dur: 20000" rotation-reader>
+    </a-entity>
+
+  </a-scene>
+
+  <!-- <script src="events.js"></script> -->
+</body>
+
+</html>
