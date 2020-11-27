@@ -3,48 +3,132 @@
 <head>
 
   <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+
+  <script src="https://unpkg.com/aframe-event-set-component@4.2.1/dist/aframe-event-set-component.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+
+  <script
+    src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
+
   <script src="rotation.js"></script>
 
-  <!-- <script src="https://unpkg.com/aframe-animation-component@^4.1.1/dist/aframe-animation-timeline-component.min.js"></script> -->
-  <!-- <script src="https://unpkg.com/aframe-animation-timeline-component@1.6.0/dist/aframe-animation-timeline-component.min.js"></script> -->
-  <!-- <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script> -->
+  <script src="collision.js"></script>
+
 
 </head>
 
 <body>
 
   <!--Virtual Flight Simulator Scene-->
-  <a-scene id="scene" keyboard-shortcuts="enterVR: false">
+  <a-scene id="scene" background="color: #A1EBFE" physics >
+
+    <!--physics="debug:true"-->
 
     <!--Assets-->
     <a-assets>
 
       <!-- GLTF Models-->
-      <a-asset-item id="plane" src="/Exploration/models/plane/scene.gltf"></a-asset-item>
-      <a-asset-item id="runway" src="/Exploration/models/runway/scene.gltf"></a-asset-item>
+      <a-asset-item id="plane" src="/Exploration/models/Poly_Airplane/PUSHILIN_Plane.gltf"></a-asset-item>
       <a-asset-item id="terrainMap" src="/Exploration/models/map_gta5/scene.gltf"></a-asset-item>
-
+      
       <!--SKY Img-->
       <img id="cloudysky" src="/Exploration/cloudsky.jpg">
 
     </a-assets>
 
-    <!--Sky-->
-    <a-sky src="#cloudysky"></a-sky>
 
-    <!--Plane fixed to camera with WASD controls-->
-    <a-entity id="#look" camera look-controls  position="0 0.5 50" >
-      <a-entity gltf-model="#plane" position="0 0 -1" scale="0.02 0.02 0.02" rotation="-0 -110 -20">
-      </a-entity>
+    <!--Camera-->
+    <a-entity id="look" camera look-controls position="0 2 25" camera-setter>      
+    </a-entity>   
+    
+    <!--Plane-->
+    <a-entity id="plane_model" gltf-model="#plane" position="0 -2 15" scale="2 2 2" rotation="0 90 0" 
+        plane-rotation-reader
+        collision-detector                 
+        static-body="shape: sphere; sphereRadius: 3">
     </a-entity>
 
     <!--Terrain Map-->
-    <a-entity gltf-model="#terrainMap" position="0 1 -300" scale="0.3 0.3 0.3" rotation="0 -50 0" animation="property: position; to: 0 1 200; loop: true; dur: 20000" rotation-reader>
-    </a-entity>
+    <a-entity id="game" position="0 0 0"
+      animation="property: position; to: 0 0 1000;easing:linear; loop: true; dur: 150000"        
+      rotation-reader>
+      
+
+      <a-entity gltf-model="#terrainMap" position="0 80 0" scale=" 0.3 0.3 0.3" static-body >
+     
+        <a-entity id="rings" >
+
+          <a-torus id="ring1" color="yellow" position="0 -300 -100" radius="5" radius-tubular="0.2" 
+            static-body="shape: sphere; sphereRadius: 1"></a-torus>
+
+          <a-torus id="ring2" color="yellow" position="-30 -320 -100" radius="5" radius-tubular="0.2"
+          static-body="shape: sphere; sphereRadius: 1"></a-torus>
+
+          <a-torus id="ring3" color="yellow" position="30 -320 -100" radius="5" radius-tubular="0.2"
+          static-body="shape: sphere; sphereRadius: 1"></a-torus>
+
+          <a-torus id="ring4" color="yellow" position="-50 -340 -100" radius="5" radius-tubular="0.2"
+          static-body="shape: sphere; sphereRadius: 1"></a-torus>
+
+          <a-torus id="ring5" color="yellow" position="50 -340 -100" radius="5" radius-tubular="0.2"
+          static-body="shape: sphere; sphereRadius: 1"></a-torus>
+
+          <a-torus id="ring6" color="yellow" position="0 -300 -200" radius="5" radius-tubular="0.2"
+          static-body="shape: sphere; sphereRadius: 1"></a-torus>
+
+          <a-torus id="ring7" color="yellow" position="-30 -320 -200" radius="5" radius-tubular="0.2"
+          static-body="shape: sphere; sphereRadius: 1"></a-torus>
+
+          <a-torus id="ring8" color="yellow" position="30 -320 -200" radius="5" radius-tubular="0.2"
+          static-body="shape: sphere; sphereRadius: 1"></a-torus>
+
+          <a-torus id="ring9" color="yellow" position="50 -340 -200" radius="5" radius-tubular="0.2"
+          static-body="shape: sphere; sphereRadius: 1"></a-torus>
+
+          <a-torus id="ring10" color="yellow" position="-50 -340 -200" radius="5" radius-tubular="0.2"
+          static-body="shape: sphere; sphereRadius: 1"></a-torus>
+
+          <a-torus id="ring11"color="yellow" position="0 -300 -300" radius="5" radius-tubular="0.2"
+          static-body="shape: sphere; sphereRadius: 1"></a-torus>
+
+          <a-torus id="ring12" color="yellow" position="-30 -320 -300" radius="5" radius-tubular="0.2"
+          static-body="shape: sphere; sphereRadius: 1"></a-torus>
+
+          <a-torus id="ring13" color="yellow" position="30 -320 -300" radius="5" radius-tubular="0.2"
+          static-body="shape: sphere; sphereRadius: 1"></a-torus>
+
+          <a-torus id="ring14" color="yellow" position="50 -340 -300" radius="5" radius-tubular="0.2"
+          static-body="shape: sphere; sphereRadius: 1"></a-torus>
+
+          <a-torus id="ring15" color="yellow" position="-50 -340 -300" radius="5" radius-tubular="0.2"
+          static-body="shape: sphere; sphereRadius: 1"></a-torus>
+
+          <a-torus id="ring16" color="yellow" position="-20 -340 -300" radius="5" radius-tubular="0.2"
+          static-body="shape: sphere; sphereRadius: 1"></a-torus>
+
+          <a-torus id="ring17" color="yellow" position="-30 -340 -300" radius="5" radius-tubular="0.2"
+          static-body="shape: sphere; sphereRadius: 1"></a-torus>
+
+          <a-torus id="ring18" color="yellow" position="-20 -340 -300" radius="5" radius-tubular="0.2"
+          static-body="shape: sphere; sphereRadius: 1"></a-torus>
+
+          <a-torus id="ring19" color="yellow" position="-50 -340 -300" radius="5" radius-tubular="0.2"
+          static-body="shape: sphere; sphereRadius: 1"></a-torus>
+
+          <a-torus id="ring20" color="yellow" position="-50 -340 -300" radius="5" radius-tubular="0.2"
+          static-body="shape: sphere; sphereRadius: 1"></a-torus>
+
+        </a-entity>
+
+        <!--Sky-->
+        <!-- <a-sky src="#cloudysky" radius="5000" ></a-sky> -->
+
+      </a-entity>
+    </a-entity>  
+
 
   </a-scene>
-
-  <!-- <script src="events.js"></script> -->
 </body>
 
 </html>
